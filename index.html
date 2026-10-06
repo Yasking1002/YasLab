@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏆 [공식] 달팽이토토 & 그랑프리 3000 (Snail Derby)</title>
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --primary: #6366f1;
+      --accent: #ec4899;
+      --gold: #fbbf24;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --lane-1: #ef4444;
+      --lane-2: #f59e0b;
+      --lane-3: #8b5cf6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 70%),
+        repeating-linear-gradient(45deg, rgba(255, 0, 85, 0.03) 0, rgba(255, 0, 85, 0.03) 1px, transparent 0, transparent 50px);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* 최상단 불법도박/웹툰사이트 스타일 롤링 전광판 */
+    .top-marquee-strip {
+      width: 100%;
+      background: linear-gradient(90deg, #b91c1c, #d97706, #7c3aed, #b91c1c);
+      background-size: 300% 100%;
+      animation: gradientShift 6s infinite linear;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 6px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+      border-bottom: 2px solid #fbbf24;
+      z-index: 50;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .top-marquee-content {
+      display: inline-block;
+      animation: marquee 22s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* 전체 화면 레이아웃 (좌우 배너 도배 + 중앙 게임) */
+    .layout-wrapper {
+      width: 100%;
+      max-width: 1440px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 12px;
+      position: relative;
+    }
+
+    /* 좌우 배너 사이드바 */
+    .banner-sidebar {
+      width: 210px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .banner-sidebar {
+        display: none; /* 화면 작으면 좌우 배너 숨기고 상하 배너로 표시 */
+      }
+    }
+
+    /* 모바일/중간 화면용 가로 배너 그리드 */
+    .banner-grid-horizontal {
+      display: none;
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 1100px) {
+      .banner-grid-horizontal {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .banner-grid-horizontal {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 번쩍이는 광고 배너 박스 디자인 (제공된 이미지 싱크로율 100%) */
+    .ad-banner {
+      width: 100%;
+      height: 86px;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      text-decoration: none;
+      user-select: none;
+      transition: transform 0.15s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      animation: bannerPulseBorder 1.5s infinite alternate;
+    }
+
+    .ad-banner:hover {
+      transform: scale(1.03);
+    }
+
+    @keyframes bannerPulseBorder {
+      0% { filter: brightness(1) drop-shadow(0 0 2px rgba(255,255,255,0.4)); }
+      50% { filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 0, 100, 0.8)); }
+      100% { filter: brightness(1.05) drop-shadow(0 0 5px rgba(255, 230, 0, 0.8)); }
+    }
+
+    /* 번쩍이는 네온 광선 효과 */
+    .ad-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+      );
+      transform: rotate(25deg);
+      animation: shineSweep 2.8s infinite;
+    }
+
+    @keyframes shineSweep {
+      0% { left: -70%; }
+      35% { left: 130%; }
+      100% { left: 130%; }
+    }
+
+    /* 배너 1: 롤 5대리그 스타일 */
+    .banner-lol {
+      background: linear-gradient(135deg, #fce7f3 0%, #fff 40%, #e0e7ff 100%);
+      border: 3px solid #db2777;
+      color: #111;
+    }
+    .banner-lol .tag {
+      background: #0284c7;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 1px 6px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    .banner-lol .main-txt {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #1e1b4b;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .banner-lol .sub-txt {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #e11d48;
+    }
+
+    /* 배너 2: 가입 30% 슈어맨 보증 스타일 */
+    .banner-major {
+      background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #fdf4ff 100%);
+      border: 3px solid #9333ea;
+    }
+    .banner-major .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .banner-major .big-red {
+      color: #dc2626;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-shadow: 1px 1px 0 #fca5a5;
+    }
+    .banner-major .code-box {
+      background: #581c87;
+      color: #fde047;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #eab308;
+    }
+
+    /* 배너 3: 슬롯게임 머니트레인 블랙 스타일 */
+    .banner-slot {
+      background: radial-gradient(circle at center, #262626 0%, #0a0a0a 100%);
+      border: 3px solid #eab308;
+      color: #fff;
+    }
+    .banner-slot .slot-title {
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #facc15;
+      text-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
+    }
+    .banner-slot .slot-desc {
+      font-size: 0.68rem;
+      color: #e2e8f0;
+      line-height: 1.25;
+    }
+
+    /* 배너 4: 3+3 10+5 황금카지노 스타일 */
+    .banner-goldcasino {
+      background: linear-gradient(180deg, #1c1917 0%, #000 100%);
+      border: 3px solid #f59e0b;
+      color: #fef08a;
+    }
+    .banner-goldcasino .ratio-line {
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: #4ade80;
+      letter-spacing: -0.5px;
+    }
+    .banner-goldcasino .gold-btn {
+      background: linear-gradient(90deg, #d97706, #fbbf24);
+      color: #000;
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    /* 배너 5: 핫핑크 & 형광 시안 네온 스타일 */
+    .banner-neon {
+      background: #09090b;
+      border: 3px solid #ec4899;
+      color: #fff;
+    }
+    .banner-neon .neon-title {
+      color: #38bdf8;
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-shadow: 0 0 8px #0284c7;
+    }
+    .banner-neon .neon-values {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #f43f5e;
+      text-shadow: 0 0 10px #e11d48;
+    }
+
+    /* 배너 6: 정류장/야구 시즌 스타일 */
+    .banner-baseball {
+      background: linear-gradient(135deg, #022c22, #064e3b);
+      border: 3px solid #10b981;
+      color: #fff;
+    }
+    .banner-baseball .bb-tag {
+      background: #f59e0b;
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* 중앙 게임 컨테이너 */
+    .container {
+      flex: 1;
+      max-width: 940px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 10;
+    }
+
+    /* 상단 헤더 & 접속자/머니 바 */
+    header {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      border: 2px solid #6366f1;
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .title-group h1 {
+      font-size: 1.45rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(236, 72, 153, 0.8);
+    }
+
+    .title-group p {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-top: 3px;
+    }
+
+    .header-stats {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239, 68, 68, 0.25);
+      border: 1px solid #ef4444;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #fca5a5;
+    }
+
+    .live-pulse {
+      width: 8px;
+      height: 8px;
+      background-color: #ef4444;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #ef4444;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .money-badge {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1.5px solid var(--gold);
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: var(--gold);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+    }
+
+    .btn-charge {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border: 1px solid #f87171;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-charge:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+    }
+
+    /* 실시간 가짜 대규모 배팅 풀 전광판 */
+    .live-ticker-bar {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid #374151;
+      border-radius: 10px;
+      padding: 9px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .ticker-feed {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #38bdf8;
+      font-family: monospace;
+      white-space: nowrap;
+      animation: fadeIn 0.3s ease-in-out;
+      font-weight: 700;
+    }
+
+    .ticker-total {
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .ticker-total span {
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    /* 트랙 경기장 */
+    .stadium {
+      background: #0b0f19;
+      border: 2px solid #374151;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .stadium-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+
+    .stadium-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .race-status {
+      font-size: 0.85rem;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #38bdf8;
+      border: 1px solid #475569;
+    }
+
+    .track-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      background: #111827;
+      padding: 12px 10px;
+      border-radius: 10px;
+      border: 1px solid #1f2937;
+    }
+
+    .lane {
+      position: relative;
+      height: 64px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 8px;
+      border-bottom: 2px dashed #334155;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+    }
+
+    .finish-line {
+      position: absolute;
+      right: 50px;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background-image: repeating-linear-gradient(
+        0deg,
+        #fff,
+        #fff 6px,
+        #000 6px,
+        #000 12px
+      );
+      z-index: 5;
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    .finish-text {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.72rem;
+      font-weight: 900;
+      color: #e2e8f0;
+      writing-mode: vertical-rl;
+      letter-spacing: 2px;
+    }
+
+    .snail-sprite {
+      position: absolute;
+      left: 10px;
+      width: 58px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.1s linear;
+      z-index: 10;
+    }
+
+    .snail-badge {
+      position: absolute;
+      top: -6px;
+      left: 6px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 6px;
+      color: white;
+    }
+
+    /* 중계 해설 자막 */
+    .commentary-box {
+      margin-top: 10px;
+      background: #070b14;
+      border: 1px solid #1f2937;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mic-icon {
+      color: #ef4444;
+      font-size: 1rem;
+    }
+
+    /* 배팅 구역 */
+    .betting-section {
+      background: var(--card-bg);
+      border: 2px solid #374151;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .snail-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .snail-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .snail-card {
+      background: #0b0f19;
+      border: 2px solid #1f2937;
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .snail-card:hover {
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .snail-card.selected {
+      border-color: #ec4899;
+      background: rgba(236, 72, 153, 0.1);
+      box-shadow: 0 0 16px rgba(236, 72, 153, 0.4);
+    }
+
+    .snail-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .snail-name {
+      font-weight: 900;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .snail-odds {
+      background: rgba(251, 191, 36, 0.2);
+      color: var(--gold);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    /* 싼마이 느낌의 흑우 현황 */
+    .snail-crowd-stats {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .crowd-label {
+      color: #cbd5e1;
+      font-weight: 700;
+    }
+
+    .crowd-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 3px;
+    }
+
+    .crowd-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s;
+    }
+
+    /* 배팅 금액 조절 */
+    .bet-amount-control {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #0b0f19;
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    .bet-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bet-input-row label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      white-space: nowrap;
+      color: #94a3b8;
+    }
+
+    .bet-input {
+      flex: 1;
+      background: #111827;
+      border: 1.5px solid #374151;
+      color: #fbbf24;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .quick-bet-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .quick-btn {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #374151;
+      color: #e2e8f0;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quick-btn:hover {
+      background: #374151;
+      color: #fff;
+    }
+    .quick-btn.all-in {
+      background: linear-gradient(135deg, #b91c1c, #dc2626);
+      border-color: #ef4444;
+      color: #fff;
+    }
+
+    .btn-start-race {
+      width: 100%;
+      background: linear-gradient(135deg, #dc2626, #b91c1c, #7c3aed);
+      background-size: 200% 200%;
+      animation: gradientShift 4s infinite linear;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-start-race:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.9);
+    }
+
+    .btn-start-race:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* 결과 모달 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #111827;
+      border: 3px solid #f59e0b;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 0 50px rgba(245, 158, 11, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      font-size: 3.2rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .modal-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .modal-reward {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--gold);
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 10px 18px;
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .modal-close-btn {
+      width: 100%;
+      background: #3b82f6;
+      border: none;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: #2563eb;
+    }
+
+    /* 최근 기록 표 */
+    .history-card {
+      background: var(--card-bg);
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    .history-table th, .history-table td {
+      padding: 7px 8px;
+      text-align: center;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .history-table th {
+      color: #94a3b8;
+      font-weight: 700;
+      background: #0b0f19;
+    }
+
+    .tag-win {
+      color: #4ade80;
+      font-weight: 800;
+    }
+    .tag-lose {
+      color: #f87171;
+      font-weight: 800;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .sheet-sync-status {
+      font-size: 0.72rem;
+      color: #38bdf8;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- 최상단 불법토토 스타일 롤링 전광판 -->
+  <div class="top-marquee-strip">
+    <div class="top-marquee-content">
+      ★ [속보] 달팽이토토 실시간 동접 4만 돌파! ★ 매일첫충 15% 돌발 20% 카지노무한 5% ★ 코드: 666 ★ 먹튀검증 1위 슈어맨 보증업체 ★ 3+3 10+5 30+8 50+15 100+25 꽁머니 즉시지급 ★ 정보선생님 몰래하는 1초 즉시환전 놀이터 ★
+    </div>
+  </div>
+
+  <div class="layout-wrapper">
+    <!-- ==========================================
+         좌측 사이드바: 번쩍이는 불법광고 배너 도배
+         ========================================== -->
+    <aside class="banner-sidebar">
+      <!-- 배너 1 (롤 5대리그 스타일) -->
+      <div class="ad-banner banner-lol" onclick="bannerClick('롤 5대리그')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="tag">WE SPORTS</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#db2777;">실시간 LIVE</span>
+        </div>
+        <div class="main-txt">롤 5대리그<br>첫타워, 첫킬</div>
+        <div class="sub-txt">⚡ 즉시지급 코드: 롤챔스</div>
+      </div>
+
+      <!-- 배너 2 (메이저사이트 슈어맨 보증 스타일) -->
+      <div class="ad-banner banner-major" onclick="bannerClick('메이저 보증')">
+        <div class="header-row">
+          <span style="font-size:0.7rem; font-weight:900; color:#6b21a8;">[1세대 메이저]</span>
+          <span class="code-box">코드: 뉴토끼</span>
+        </div>
+        <div>
+          <span class="big-red">가입 30%</span>
+          <span style="font-size:0.7rem; font-weight:800; color:#374151;"> 무한매충 10%</span>
+        </div>
+        <div style="font-size:0.65rem; color:#4c1d95; font-weight:700;">★ 슈어맨2 공식 보증업체 ★</div>
+      </div>
+
+      <!-- 배너 3 (슬롯게임 머니트레인 블랙) -->
+      <div class="ad-banner banner-slot" onclick="bannerClick('상추트레인 슬롯')">
+        <div class="slot-title">🎰 상추트레인2 독점런칭</div>
+        <div class="slot-desc">
+          롤링 1.2% 루징 10% 돌발 20%<br>
+          국내최초 달팽이 머니트레인 슬롯
+        </div>
+        <div style="font-size:0.62rem; color:#facc15; font-weight:800;">코드: JACKPOT</div>
+      </div>
+
+      <!-- 배너 4 (3+3 10+5 황금카지노) -->
+      <div class="ad-banner banner-goldcasino" onclick="bannerClick('WINWIN 황금놀이터')">
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:0.65rem; color:#f59e0b; font-weight:900;">👑 WINWIN 메이저</span>
+          <span class="gold-btn">코드: NEW</span>
+        </div>
+        <div class="ratio-line">3+3 10+5 30+8 50+15</div>
+        <div style="font-size:0.65rem; color:#a3a3a3;">스포츠상한 3천만원 고액전용</div>
+      </div>
+
+      <!-- 배너 5 (네온 핫핑크 666 스타일) -->
+      <div class="ad-banner banner-neon" onclick="bannerClick('BET 666')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="neon-title">⚡ BET 666</span>
+          <span style="background:#dc2626; color:#fff; font-size:0.62rem; padding:1px 5px; border-radius:3px; font-weight:900;">입/환 1초</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="neon-values">첫충 20%</span>
+          <span style="font-size:0.8rem; font-weight:900; color:#38bdf8;">매충 10%</span>
+        </div>
+        <div style="font-size:0.65rem; color:#9ca3af;">게임제재 X / 먹튀이력 0건</div>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         중앙: 메인 달팽이 경주 게임 컨테이너
+         ========================================== -->
+    <div class="container">
+      <!-- 모바일/중간 화면용 상단 배너 그리드 -->
+      <div class="banner-grid-horizontal">
+        <div class="ad-banner banner-lol" onclick="bannerClick('롤 5대리그')">
+          <div style="display:flex; justify-content:space-between;">
+            <span class="tag">WE SPORTS</span>
+            <span style="font-size:0.65rem; font-weight:900; color:#db2777;">실시간 배팅</span>
+          </div>
+          <div class="main-txt">롤 5대리그 첫타워, 첫킬</div>
+          <div class="sub-txt">코드: 뉴토끼 / 꽁머니 3만</div>
+        </div>
+
+        <div class="ad-banner banner-goldcasino" onclick="bannerClick('WINWIN')">
+          <div style="display:flex; justify-content:space-between;">
+            <span style="font-size:0.65rem; color:#f59e0b; font-weight:900;">👑 WINWIN 카지노</span>
+            <span class="gold-btn">코드: 666</span>
+          </div>
+          <div class="ratio-line">3+3 10+5 30+8 50+15</div>
+          <div style="font-size:0.65rem; color:#a3a3a3;">입/환 무제한 고액전용놀이터</div>
+        </div>
+      </div>
+
+      <!-- 상단 헤더 -->
+      <header>
+        <div class="title-group">
+          <h1>🐌 [공식] 달팽이토토 3000</h1>
+          <p>한 판에 인생역전! 흑우들의 치열한 영끌 달팽이 배팅 배틀</p>
+        </div>
+
+        <div class="header-stats">
+          <div class="live-badge">
+            <div class="live-pulse"></div>
+            LIVE <span id="online-users">48,321</span>명 접속 중
+          </div>
+
+          <div class="money-badge">
+            <span>💰</span>
+            <span id="user-balance">50,000</span> P
+          </div>
+
+          <button class="btn-charge" onclick="rechargeMoney()">💸 파산 구제금 받기</button>
+          <button class="btn-charge" id="audio-toggle-btn" onclick="toggleAudio()" style="background:#374151; border-color:#4b5563;">🔊 소리 켜짐</button>
+        </div>
+      </header>
+
+      <!-- 실시간 가짜 대규모 배팅 풀 전광판 -->
+      <div class="live-ticker-bar">
+        <div class="ticker-feed" id="ticker-feed">
+          📢 [실시간 영끌] VIP흑우(8820)님이 2번 일수대출 황금마차에 50,000P 몰빵!
+        </div>
+        <div class="ticker-total">
+          총 배팅 풀: <span id="total-pool-text">384,190,000 P</span>
+        </div>
+      </div>
+
+      <!-- 트랙 경기장 -->
+      <div class="stadium">
+        <div class="stadium-header">
+          <div class="stadium-title">
+            <span>🏁 100% 무작위 공정 배팅 트랙 (거리 100m)</span>
+          </div>
+          <div class="race-status" id="race-status-badge">배팅 대기 중</div>
+        </div>
+
+        <div class="track-container">
+          <!-- 1번 레인: 빚더미 불나방 -->
+          <div class="lane" id="lane-1">
+            <div class="finish-line"></div>
+            <div class="finish-text">FINISH</div>
+            <div class="snail-sprite" id="snail-1" style="left: 10px;">
+              <span class="snail-badge" style="background: var(--lane-1);">1번</span>
+              <svg viewBox="0 0 64 48" width="54" height="42">
+                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#ef4444"/>
+                <circle cx="26" cy="24" r="13" fill="#b91c1c"/>
+                <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#f87171"/>
+                <circle cx="56" cy="16" r="3.5" fill="#f87171"/>
+                <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
+                <line x1="53" y1="23" x2="56" y2="16" stroke="#f87171" stroke-width="2.5"/>
+                <circle cx="50" cy="15" r="3.5" fill="#f87171"/>
+                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
+                <line x1="49" y1="23" x2="50" y2="15" stroke="#f87171" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 2번 레인: 일수대출 황금마차 -->
+          <div class="lane" id="lane-2">
+            <div class="finish-line"></div>
+            <div class="finish-text">FINISH</div>
+            <div class="snail-sprite" id="snail-2" style="left: 10px;">
+              <span class="snail-badge" style="background: var(--lane-2);">2번</span>
+              <svg viewBox="0 0 64 48" width="54" height="42">
+                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#f59e0b"/>
+                <circle cx="26" cy="24" r="13" fill="#b45309"/>
+                <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#fbbf24"/>
+                <circle cx="56" cy="16" r="3.5" fill="#fbbf24"/>
+                <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
+                <line x1="53" y1="23" x2="56" y2="16" stroke="#fbbf24" stroke-width="2.5"/>
+                <circle cx="50" cy="15" r="3.5" fill="#fbbf24"/>
+                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
+                <line x1="49" y1="23" x2="50" y2="15" stroke="#fbbf24" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3번 레인: 코인충 존버탈출 -->
+          <div class="lane" id="lane-3">
+            <div class="finish-line"></div>
+            <div class="finish-text">FINISH</div>
+            <div class="snail-sprite" id="snail-3" style="left: 10px;">
+              <span class="snail-badge" style="background: var(--lane-3);">3번</span>
+              <svg viewBox="0 0 64 48" width="54" height="42">
+                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#8b5cf6"/>
+                <circle cx="26" cy="24" r="13" fill="#6d28d9"/>
+                <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#ddd6fe" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#a78bfa"/>
+                <circle cx="56" cy="16" r="3.5" fill="#a78bfa"/>
+                <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
+                <line x1="53" y1="23" x2="56" y2="16" stroke="#a78bfa" stroke-width="2.5"/>
+                <circle cx="50" cy="15" r="3.5" fill="#a78bfa"/>
+                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
+                <line x1="49" y1="23" x2="50" y2="15" stroke="#a78bfa" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 싼마이 중계 해설 자막 -->
+        <div class="commentary-box">
+          <span class="mic-icon">🎙️</span>
+          <span id="commentary-text">흑우 여러분 준비되셨습니까? 인생을 걸 달팽이에 영끌 배팅하세요!</span>
+        </div>
+      </div>
+
+      <!-- 배팅 구역 -->
+      <div class="betting-section">
+        <div class="section-title">
+          <span>🎯 영끌 달팽이 선택 & 배팅</span>
+          <span style="font-size: 0.8rem; color: #f43f5e; font-weight: bold;">*조작 없음! 3마리 모두 수학적으로 33.3% 순수 랜덤</span>
+        </div>
+
+        <div class="snail-cards">
+          <!-- 1번 달팽이: 빚더미 불나방 -->
+          <div class="snail-card selected" id="card-1" onclick="selectSnail(1)">
+            <div class="snail-card-header">
+              <div class="snail-name" style="color: #fca5a5;">
+                <span>🐌 1번 빚더미 불나방</span>
+              </div>
+              <div class="snail-odds" id="odds-1">2.75x</div>
+            </div>
+            <div class="snail-crowd-stats">
+              <div><span class="crowd-label">탑승 흑우:</span> <strong id="crowd-count-1">16,240</strong>마리 (<span id="crowd-pct-1">36</span>%)</div>
+              <div><span class="crowd-label">영끌 총액:</span> <strong id="crowd-pool-1">138,200,000</strong> P</div>
+              <div class="crowd-bar-bg">
+                <div class="crowd-bar-fill" id="crowd-bar-1" style="width: 36%; background: var(--lane-1);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2번 달팽이: 일수대출 황금마차 -->
+          <div class="snail-card" id="card-2" onclick="selectSnail(2)">
+            <div class="snail-card-header">
+              <div class="snail-name" style="color: #fde68a;">
+                <span>🐌 2번 일수대출 황금마차</span>
+              </div>
+              <div class="snail-odds" id="odds-2">2.95x</div>
+            </div>
+            <div class="snail-crowd-stats">
+              <div><span class="crowd-label">탑승 흑우:</span> <strong id="crowd-count-2">15,480</strong>마리 (<span id="crowd-pct-2">34</span>%)</div>
+              <div><span class="crowd-label">영끌 총액:</span> <strong id="crowd-pool-2">130,500,000</strong> P</div>
+              <div class="crowd-bar-bg">
+                <div class="crowd-bar-fill" id="crowd-bar-2" style="width: 34%; background: var(--lane-2);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3번 달팽이: 코인충 존버탈출 -->
+          <div class="snail-card" id="card-3" onclick="selectSnail(3)">
+            <div class="snail-card-header">
+              <div class="snail-name" style="color: #ddd6fe;">
+                <span>🐌 3번 코인충 존버탈출</span>
+              </div>
+              <div class="snail-odds" id="odds-3">3.30x</div>
+            </div>
+            <div class="snail-crowd-stats">
+              <div><span class="crowd-label">탑승 흑우:</span> <strong id="crowd-count-3">13,620</strong>마리 (<span id="crowd-pct-3">30</span>%)</div>
+              <div><span class="crowd-label">영끌 총액:</span> <strong id="crowd-pool-3">115,490,000</strong> P</div>
+              <div class="crowd-bar-bg">
+                <div class="crowd-bar-fill" id="crowd-bar-3" style="width: 30%; background: var(--lane-3);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 배팅 금액 입력 & 퀵 버튼 -->
+        <div class="bet-amount-control">
+          <div class="bet-input-row">
+            <label for="bet-amount">배팅 머니 (P):</label>
+            <input type="number" id="bet-amount" class="bet-input" value="5000" min="100" step="500">
+          </div>
+          <div class="quick-bet-btns">
+            <button class="quick-btn" onclick="addBet(1000)">+1천</button>
+            <button class="quick-btn" onclick="addBet(5000)">+5천</button>
+            <button class="quick-btn" onclick="addBet(10000)">+1만</button>
+            <button class="quick-btn" onclick="setHalfBet()">반띵(HALF)</button>
+            <button class="quick-btn all-in" onclick="setAllIn()">🔥 인생역전 ALL-IN</button>
+          </div>
+        </div>
+
+        <!-- 레이스 시작 버튼 -->
+        <button class="btn-start-race" id="start-btn" onclick="startRace()">
+          <span>🚀 배팅 확정 & 레이스 출발! (복호화 시작)</span>
+        </button>
+      </div>
+
+      <!-- 최근 나의 경기 기록 -->
+      <div class="history-card">
+        <div class="section-title">
+          <span>📜 실시간 정산 장부</span>
+          <span class="sheet-sync-status" id="sheet-sync-status">⚡ 구글 스프레드시트 연동 대기중</span>
+        </div>
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>회차</th>
+              <th>탑승 달팽이</th>
+              <th>배팅액</th>
+              <th>우승 달팽이</th>
+              <th>정산 결과</th>
+              <th>손익금</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr>
+              <td colspan="6" style="color: #64748b;">아직 진행된 경기가 없습니다. 흑우가 되어보세요!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         우측 사이드바: 추가 번쩍이는 광고 배너 도배
+         ========================================== -->
+    <aside class="banner-sidebar">
+      <!-- 배너 6 (정류장 스타일) -->
+      <div class="ad-banner banner-baseball" onclick="bannerClick('정류장')">
+        <div style="display:flex; justify-content:space-between;">
+          <span class="bb-tag">정류장</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#fbbf24;">코드: New</span>
+        </div>
+        <div style="font-size:0.88rem; font-weight:900; color:#fff;">매일 첫충 15% 돌발 20%</div>
+        <div style="font-size:0.65rem; color:#a7f3d0;">정식에볼루션 및 30종류 미니게임</div>
+      </div>
+
+      <!-- 배너 7 (야구시즌 ASK 필수사이트) -->
+      <div class="ad-banner banner-goldcasino" onclick="bannerClick('ASK 야구시즌')">
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:0.85rem; font-weight:900; color:#38bdf8;">ASK</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#f87171;">코드: HIT</span>
+        </div>
+        <div style="font-size:0.82rem; font-weight:900; color:#fbbf24;">첫충 30% 무한 10% 잃으면 5%</div>
+        <div style="font-size:0.65rem; color:#d4d4d8;">★ 야구시즌 필수 사이트 ★</div>
+      </div>
+
+      <!-- 배너 8 (정보선생님 몰래하는 카지노) -->
+      <div class="ad-banner banner-neon" onclick="bannerClick('선생님 몰래')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="color:#f43f5e; font-size:0.85rem; font-weight:900;">🚨 [극비 런칭]</span>
+          <span style="background:#eab308; color:#000; font-size:0.6rem; padding:1px 4px; font-weight:900; border-radius:3px;">HOT</span>
+        </div>
+        <div style="font-size:0.88rem; font-weight:900; color:#fff;">정보쌤 몰래하는 놀이터</div>
+        <div style="font-size:0.65rem; color:#67e8f9;">컴퓨터실 뒷자리 전용 / 먹튀 0% 보장</div>
+      </div>
+
+      <!-- 배너 9 (슈퍼슬롯 머니트레인) -->
+      <div class="ad-banner banner-slot" onclick="bannerClick('슬롯 잭팟')">
+        <div class="slot-title">⚡ 잭팟 터지는 달팽이 슬롯</div>
+        <div class="slot-desc">
+          잃어도 50% 페이백 이벤트!<br>
+          지인 추천 시 꽁머니 5만 지급
+        </div>
+        <div style="font-size:0.65rem; color:#f43f5e; font-weight:900;">가입코드: VIP777</div>
+      </div>
+
+      <!-- 배너 10 (메이저 카지노) -->
+      <div class="ad-banner banner-major" onclick="bannerClick('메이저 클럽')">
+        <div class="header-row">
+          <span style="font-size:0.75rem; font-weight:900; color:#db2777;">VIP 라운지</span>
+          <span class="code-box">코드: GOD</span>
+        </div>
+        <div class="big-red" style="font-size:1.05rem;">충전 시 1.5배 즉시지급</div>
+        <div style="font-size:0.65rem; color:#4b5563;">텔레그램 @SNAIL_CS 24시간 문의</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 승리/패배 결과 모달 -->
+  <div class="modal-overlay" id="result-modal">
+    <div class="modal-card">
+      <div class="modal-icon" id="modal-icon">🎉</div>
+      <h2 class="modal-title" id="modal-title">인생역전 대성공!</h2>
+      <p class="modal-desc" id="modal-desc">
+        1번 빚더미 불나방 달팽이가 가장 먼저 결승선을 통과했습니다!
+      </p>
+      <div class="modal-reward" id="modal-reward">+13,750 P</div>
+      <button class="modal-close-btn" onclick="closeModal()">다음 판 영끌하러 가기</button>
+    </div>
+  </div>
+
+  <script>
+    /* ========================================================
+       1. 전역 상태 및 데이터 관리 (싼마이 달팽이 3마리)
+       ======================================================== */
+    let userBalance = 50000;
+    let selectedSnail = 1;
+    let isRacing = false;
+    let audioEnabled = true;
+    let raceCount = 0;
+    let onlineUsers = 48321;
+    let basePool = 384190000;
+
+    // 달팽이 3마리 (싼마이 컨셉)
+    const snailStats = [
+      { name: '1번 빚더미 불나방', color: '#ef4444', odds: 2.75, pct: 36, count: 16240, pool: 138200000 },
+      { name: '2번 일수대출 황금마차', color: '#f59e0b', odds: 2.95, pct: 34, count: 15480, pool: 130500000 },
+      { name: '3번 코인충 존버탈출', color: '#8b5cf6', odds: 3.30, pct: 30, count: 13620, pool: 115490000 }
+    ];
+
+    // 가짜 배너 클릭 시 재밌는 이스터에그 알림
+    const bannerFunnyQuotes = [
+      "🚨 [경고] 정보 선생님: \"거기 뒤에 너 뭐하니?\"",
+      "⚠️ 삐빅! 공부나 하세요! (본 사이트는 수행평가용 가상머니 시뮬레이션입니다)",
+      "💸 꽁머니 3만 포인트는 마음속으로 지급되었습니다!",
+      "📵 주의: 진짜 돈을 걸면 빚더미 불나방이 됩니다. 도박 근절!",
+      "🔒 경찰청 사이버안전국: 수행평가 열심히 하세요~"
+    ];
+
+    function bannerClick(name) {
+      soundBeep();
+      const quote = bannerFunnyQuotes[Math.floor(Math.random() * bannerFunnyQuotes.length)];
+      alert(`[${name} 광고 클릭]\n\n${quote}`);
+    }
+
+    // Web Audio API 효과음 생성기
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, delay = 0) {
+      if (!audioEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      } catch (e) {}
+    }
+
+    function soundBeep() { playTone(587, 'sine', 0.15); }
+    function soundStartWhistle() { 
+      playTone(880, 'triangle', 0.1); 
+      playTone(1320, 'triangle', 0.35, 0.1); 
+    }
+    function soundWin() {
+      [523, 659, 783, 1046].forEach((f, idx) => {
+        playTone(f, 'sine', 0.3, idx * 0.12);
+      });
+    }
+    function soundLose() {
+      [400, 360, 320, 270].forEach((f, idx) => {
+        playTone(f, 'sawtooth', 0.25, idx * 0.15);
+      });
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const btn = document.getElementById('audio-toggle-btn');
+      btn.innerText = audioEnabled ? '🔊 소리 켜짐' : '🔇 음소거';
+      btn.style.color = audioEnabled ? '#e5e7eb' : '#94a3b8';
+    }
+
+    /* ========================================================
+       2. 실시간 대규모 접속자 및 흑우 배팅 시뮬레이션
+       ======================================================== */
+    const tickerMessages = [
+      "VIP흑우(8820)님이 2번 일수대출 황금마차에 50,000P 몰빵!",
+      "강남월세보증금님이 1번 빚더미 불나방에 100,000P 풀매수!",
+      "고삼수험생(0032)님이 3번 코인충 존버탈출에 20,000P 투척!",
+      "역전의명수님이 2번 황금마차에 인생 마지막 올인(ALL-IN)을 감행했습니다!",
+      "한강수온체크(1104)님이 1번 불나방에 30,000P 탑승 완료!",
+      "구조대언제와(9941)님이 3번 존버탈출에 75,000P 긴급 수혈!"
+    ];
+
+    setInterval(() => {
+      // 1) 접속자 수 변동 (±15 ~ 45명)
+      const deltaUsers = Math.floor(Math.random() * 70) - 30;
+      onlineUsers = Math.max(38000, onlineUsers + deltaUsers);
+      document.getElementById('online-users').innerText = onlineUsers.toLocaleString();
+
+      // 2) 전체 배팅 풀 증가
+      const deltaPool = Math.floor(Math.random() * 80000) + 20000;
+      basePool += deltaPool;
+      document.getElementById('total-pool-text').innerText = basePool.toLocaleString() + ' P';
+
+      // 3) 각 달팽이별 흑우 수치 소폭 변동
+      const randIdx = Math.floor(Math.random() * 3);
+      snailStats[randIdx].count += Math.floor(Math.random() * 12) + 1;
+      snailStats[randIdx].pool += deltaPool;
+      document.getElementById(`crowd-count-${randIdx+1}`).innerText = snailStats[randIdx].count.toLocaleString();
+      document.getElementById(`crowd-pool-${randIdx+1}`).innerText = snailStats[randIdx].pool.toLocaleString();
+
+      // 4) 가짜 티커 업데이트
+      if (Math.random() > 0.4) {
+        const randMsg = tickerMessages[Math.floor(Math.random() * tickerMessages.length)];
+        const tickerEl = document.getElementById('ticker-feed');
+        tickerEl.style.opacity = '0';
+        setTimeout(() => {
+          tickerEl.innerText = `📢 [실시간 영끌] ${randMsg}`;
+          tickerEl.style.opacity = '1';
+        }, 200);
+      }
+    }, 1600);
+
+    /* ========================================================
+       3. 배팅 UI 상호작용
+       ======================================================== */
+    function selectSnail(id) {
+      if (isRacing) return;
+      selectedSnail = id;
+      for (let i = 1; i <= 3; i++) {
+        const card = document.getElementById(`card-${i}`);
+        if (i === id) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      }
+      soundBeep();
+    }
+
+    function addBet(amount) {
+      if (isRacing) return;
+      const input = document.getElementById('bet-amount');
+      let current = parseInt(input.value) || 0;
+      input.value = Math.min(userBalance, current + amount);
+      soundBeep();
+    }
+
+    function setHalfBet() {
+      if (isRacing) return;
+      document.getElementById('bet-amount').value = Math.max(100, Math.floor(userBalance / 2));
+      soundBeep();
+    }
+
+    function setAllIn() {
+      if (isRacing) return;
+      document.getElementById('bet-amount').value = userBalance;
+      soundBeep();
+    }
+
+    function rechargeMoney() {
+      if (isRacing) return;
+      userBalance += 30000;
+      updateBalanceDisplay();
+      alert("✨ [파산 구제금] 나라에서 지급하는 30,000 P 가 충전되었습니다! 이번엔 꼭 따세요!");
+      soundWin();
+    }
+
+    function updateBalanceDisplay() {
+      document.getElementById('user-balance').innerText = userBalance.toLocaleString();
+    }
+
+    /* ========================================================
+       4. 레이스 로직 & 완전 공정 무작위 우승자 추첨
+       ======================================================== */
+    const commentaryList = [
+      "빚더미 불나방이 이판사판으로 치고 나갑니다!",
+      "일수대출 황금마차가 이자를 갚기 위해 살벌하게 가속합니다!",
+      "코인충 존버탈출, 드디어 양봉을 띄우며 외곽에서 맹추격!",
+      "엎치락뒤치락! 흑우들의 탄성과 비명이 트랙을 뒤흔듭니다!",
+      "마지막 코너! 한강 가느냐 강남 가느냐 그것이 문제입니다!",
+      "피니시 라인 직전! 사진 판독 들어갑니다!!"
+    ];
+
+    function startRace() {
+      if (isRacing) return;
+
+      const betInput = document.getElementById('bet-amount');
+      const betAmount = parseInt(betInput.value) || 0;
+
+      if (betAmount <= 0) {
+        alert("배팅 머니는 100 P 이상이어야 합니다.");
+        return;
+      }
+
+      if (betAmount > userBalance) {
+        alert("보유 머니가 부족합니다! 상단의 파산 구제금을 받으세요.");
+        return;
+      }
+
+      // 배팅 차감
+      userBalance -= betAmount;
+      updateBalanceDisplay();
+      isRacing = true;
+
+      // 상태 변경
+      document.getElementById('start-btn').disabled = true;
+      document.getElementById('race-status-badge').innerText = '🔥 결사항전 질주 중!';
+      document.getElementById('race-status-badge').style.color = '#ef4444';
+
+      soundStartWhistle();
+
+      // 달팽이 위치 초기화
+      const snails = [
+        document.getElementById('snail-1'),
+        document.getElementById('snail-2'),
+        document.getElementById('snail-3')
+      ];
+      snails.forEach(s => s.style.left = '10px');
+
+      // ----------------------------------------------------
+      // ★ 100% 공정한 순수 무작위(Fair Random) 우승자 결정
+      // Math.floor(Math.random() * 3) -> 1/3 (33.333%) 절대 균등 확률
+      // ----------------------------------------------------
+      const fairWinnerIndex = Math.floor(Math.random() * 3);
+      const winnerSnailId = fairWinnerIndex + 1;
+
+      const trackWidth = document.querySelector('.lane').clientWidth;
+      const targetFinishX = trackWidth - 95;
+
+      let currentPositions = [10, 10, 10];
+      let raceProgress = 0;
+      const totalSteps = 160;
+      let step = 0;
+
+      const commentaryEl = document.getElementById('commentary-text');
+      commentaryEl.innerText = "🚥 스타트! 과연 어느 흑우가 오늘 웃게 될 것인가?!";
+
+      const raceInterval = setInterval(() => {
+        step++;
+        raceProgress = step / totalSteps;
+
+        // 중계 자막 교체
+        if (step % 28 === 0) {
+          const commentIdx = Math.min(commentaryList.length - 1, Math.floor(raceProgress * commentaryList.length));
+          commentaryEl.innerText = commentaryList[commentIdx];
+        }
+
+        // 달팽이 이동 연출
+        for (let i = 0; i < 3; i++) {
+          let randomJitter = (Math.random() * 2.8) - 1.0;
+          let baseSpeed = (targetFinishX - 10) / totalSteps;
+
+          if (i === fairWinnerIndex) {
+            if (raceProgress > 0.5) {
+              baseSpeed *= 1.25;
+            } else {
+              baseSpeed *= 0.95;
+            }
+          } else {
+            if (raceProgress > 0.7) {
+              baseSpeed *= 0.75;
+            }
+          }
+
+          currentPositions[i] += baseSpeed + randomJitter;
+          if (currentPositions[i] < 10) currentPositions[i] = 10;
+          if (i !== fairWinnerIndex && currentPositions[i] >= targetFinishX - 8) {
+            currentPositions[i] = targetFinishX - 8;
+          }
+
+          snails[i].style.left = `${currentPositions[i]}px`;
+        }
+
+        // 결승선 판정
+        if (currentPositions[fairWinnerIndex] >= targetFinishX || step >= totalSteps) {
+          clearInterval(raceInterval);
+          currentPositions[fairWinnerIndex] = targetFinishX + 4;
+          snails[fairWinnerIndex].style.left = `${currentPositions[fairWinnerIndex]}px`;
+
+          finishRace(winnerSnailId, betAmount);
+        }
+      }, 55);
+    }
+
+    /* ========================================================
+       5. 경기 종료 & 배당금 정산 & 구글 시트 연동
+       ======================================================== */
+    function finishRace(winnerId, betAmount) {
+      raceCount++;
+      const isWin = (selectedSnail === winnerId);
+      const chosenStats = snailStats[selectedSnail - 1];
+      const winnerStats = snailStats[winnerId - 1];
+
+      let netProfit = 0;
+      let payout = 0;
+
+      if (isWin) {
+        payout = Math.floor(betAmount * chosenStats.odds);
+        netProfit = payout - betAmount;
+        userBalance += payout;
+        soundWin();
+        triggerConfetti();
+      } else {
+        netProfit = -betAmount;
+        soundLose();
+      }
+
+      updateBalanceDisplay();
+
+      document.getElementById('race-status-badge').innerText = `🏆 ${winnerStats.name} 1위 골인!`;
+      document.getElementById('race-status-badge').style.color = '#fbbf24';
+      document.getElementById('start-btn').disabled = false;
+      isRacing = false;
+
+      // 결과 모달창
+      const modal = document.getElementById('result-modal');
+      const modalIcon = document.getElementById('modal-icon');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalReward = document.getElementById('modal-reward');
+
+      if (isWin) {
+        modalIcon.innerText = '🤑';
+        modalTitle.innerText = '🎉 떡상 성공! 흑우 탈출!';
+        modalTitle.style.color = '#4ade80';
+        modalDesc.innerHTML = `선택하신 <strong>${chosenStats.name}</strong>가 기적의 역전승을 거두었습니다!<br>배당률 ${chosenStats.odds}배가 적용되어 잔고가 폭발합니다.`;
+        modalReward.innerText = `+${payout.toLocaleString()} P 획득!`;
+        modalReward.style.color = '#fbbf24';
+      } else {
+        modalIcon.innerText = '😭';
+        modalTitle.innerText = '휴지조각 엔딩... 흑우 당첨!';
+        modalTitle.style.color = '#f87171';
+        modalDesc.innerHTML = `우승 달팽이는 <strong>${winnerStats.name}</strong> 였습니다.<br>당신의 배팅 머니는 다른 흑우들에게 돌아갔습니다...`;
+        modalReward.innerText = `-${betAmount.toLocaleString()} P 탕진`;
+        modalReward.style.color = '#f87171';
+      }
+
+      modal.classList.add('active');
+
+      // 장부 기록 추가
+      addHistoryRow(raceCount, chosenStats.name, betAmount, winnerStats.name, isWin, (isWin ? `+${payout.toLocaleString()}` : `-${betAmount.toLocaleString()}`));
+
+      // 구글 스프레드시트 기록 전송
+      syncToGoogleSheet({
+        raceNumber: raceCount,
+        chosenSnail: chosenStats.name,
+        betAmount: betAmount,
+        winnerSnail: winnerStats.name,
+        result: isWin ? '승리' : '패배',
+        netProfit: isWin ? `+${netProfit}` : `-${betAmount}`,
+        currentBalance: userBalance
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('result-modal').classList.remove('active');
+    }
+
+    function addHistoryRow(round, chosen, bet, winner, isWin, earningText) {
+      const tbody = document.getElementById('history-body');
+      if (round === 1) tbody.innerHTML = '';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>#${round}</td>
+        <td>${chosen}</td>
+        <td>${bet.toLocaleString()} P</td>
+        <td><strong>${winner}</strong></td>
+        <td><span class="${isWin ? 'tag-win' : 'tag-lose'}">${isWin ? '떡상(승)' : '물림(패)'}</span></td>
+        <td class="${isWin ? 'tag-win' : 'tag-lose'}">${earningText} P</td>
+      `;
+      tbody.prepend(tr);
+    }
+
+    function syncToGoogleSheet(record) {
+      const statusEl = document.getElementById('sheet-sync-status');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        statusEl.innerText = "⏳ 구글 시트 장부에 기록 중...";
+        google.script.run
+          .withSuccessHandler(function(response) {
+            statusEl.innerText = "✅ 구글 스프레드시트에 영끌 기록 저장됨";
+          })
+          .withFailureHandler(function(err) {
+            statusEl.innerText = "⚠️ 시트 기록 실패: " + err;
+          })
+          .saveRecord(record);
+      } else {
+        statusEl.innerText = "💾 로컬 브라우저 모드";
+      }
+    }
+
+    /* ========================================================
+       6. 폭죽 파티클 (Confetti)
+       ======================================================== */
+    function triggerConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#ef4444', '#f59e0b', '#8b5cf6', '#10b981', '#3b82f6', '#ec4899', '#facc15'];
+
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.8) * 18,
+          size: Math.random() * 9 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let activeCount = 0;
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.38;
+          p.rotation += p.vRot;
+          p.opacity -= 0.012;
+
+          if (p.opacity > 0) {
+            activeCount++;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.globalAlpha = p.opacity;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+          }
+        });
+
+        if (activeCount > 0) {
+          requestAnimationFrame(render);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      render();
+    }
+  </script>
+</body>
+</html>
