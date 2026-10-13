@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏆 [공식] 박민아넷 3000 (Snail Derby)</title>
+  <title>🏆 [공식] 박민아넷 3000 (Snail Derby - 공식 인증 메이저)</title>
   <style>
     :root {
       --bg-dark: #070b14;
@@ -18,6 +18,8 @@
       --lane-2: #f59e0b;
       --lane-3: #8b5cf6;
       --lane-4: #10b981;
+      --lane-5: #06b6d4;
+      --lane-6: #ec4899;
     }
 
     * {
@@ -43,7 +45,7 @@
     /* 최상단 롤링 전광판 */
     .top-marquee-strip {
       width: 100%;
-      background: linear-gradient(90deg, #b91c1c, #d97706, #7c3aed, #10b981, #b91c1c);
+      background: linear-gradient(90deg, #b91c1c, #d97706, #7c3aed, #06b6d4, #b91c1c);
       background-size: 300% 100%;
       animation: gradientShift 6s infinite linear;
       color: #fff;
@@ -65,7 +67,7 @@
 
     .top-marquee-content {
       display: inline-block;
-      animation: marquee 24s linear infinite;
+      animation: marquee 25s linear infinite;
     }
 
     @keyframes marquee {
@@ -86,14 +88,14 @@
 
     /* 좌우 배너 사이드바 */
     .banner-sidebar {
-      width: 210px;
+      width: 215px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       flex-shrink: 0;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1120px) {
       .banner-sidebar {
         display: none;
       }
@@ -107,7 +109,7 @@
       margin-bottom: 10px;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1120px) {
       .banner-grid-horizontal {
         display: grid;
       }
@@ -122,7 +124,7 @@
     /* 광고 배너 박스 디자인 */
     .ad-banner {
       width: 100%;
-      height: 86px;
+      height: 88px;
       border-radius: 6px;
       padding: 8px 10px;
       display: flex;
@@ -131,7 +133,6 @@
       position: relative;
       cursor: pointer;
       overflow: hidden;
-      text-decoration: none;
       user-select: none;
       transition: transform 0.15s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
@@ -167,18 +168,30 @@
     }
 
     /* 배너 테마 */
-    .banner-lol {
-      background: linear-gradient(135deg, #fce7f3 0%, #fff 40%, #e0e7ff 100%);
-      border: 3px solid #db2777;
-      color: #111;
+    .banner-diet {
+      background: linear-gradient(135deg, #dcfce7 0%, #ffffff 50%, #f0fdf4 100%);
+      border: 3px solid #22c55e;
+      color: #14532d;
     }
-    .banner-lol .tag {
-      background: #0284c7;
+    .banner-diet .diet-tag {
+      background: #16a34a;
       color: #fff;
       font-size: 0.65rem;
       font-weight: 900;
       padding: 1px 6px;
       border-radius: 12px;
+    }
+
+    .banner-gym {
+      background: radial-gradient(circle at center, #1e1b4b 0%, #09090b 100%);
+      border: 3px solid #f43f5e;
+      color: #fff;
+    }
+
+    .banner-king {
+      background: linear-gradient(135deg, #082f49 0%, #0c4a6e 100%);
+      border: 3px solid #06b6d4;
+      color: #fff;
     }
 
     .banner-major {
@@ -190,27 +203,8 @@
       font-size: 1.15rem;
       font-weight: 900;
     }
-    .banner-major .code-box {
-      background: #581c87;
-      color: #fde047;
-      font-size: 0.7rem;
-      font-weight: 900;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
 
-    .banner-slot {
-      background: radial-gradient(circle at center, #262626 0%, #0a0a0a 100%);
-      border: 3px solid #eab308;
-      color: #fff;
-    }
-    .banner-slot .slot-title {
-      font-size: 0.85rem;
-      font-weight: 900;
-      color: #facc15;
-    }
-
-    .banner-goldcasino {
+    .banner-gold {
       background: linear-gradient(180deg, #1c1917 0%, #000 100%);
       border: 3px solid #f59e0b;
       color: #fef08a;
@@ -219,12 +213,6 @@
     .banner-neon {
       background: #09090b;
       border: 3px solid #ec4899;
-      color: #fff;
-    }
-
-    .banner-baseball {
-      background: linear-gradient(135deg, #022c22, #064e3b);
-      border: 3px solid #10b981;
       color: #fff;
     }
 
@@ -251,20 +239,47 @@
       gap: 12px;
     }
 
-    .title-group h1 {
-      font-size: 1.45rem;
-      font-weight: 900;
+    .title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .title-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .title-row h1 {
+      font-size: 1.45rem;
+      font-weight: 900;
       color: #fff;
       text-shadow: 0 0 12px rgba(236, 72, 153, 0.8);
+    }
+
+    .safe-badge {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #34d399;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+      animation: safePulse 2s infinite;
+    }
+
+    @keyframes safePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     .title-group p {
       font-size: 0.8rem;
       color: #cbd5e1;
-      margin-top: 3px;
+      font-weight: 700;
     }
 
     .header-stats {
@@ -364,7 +379,7 @@
       font-weight: 800;
     }
 
-    /* 경기장 트랙 */
+    /* 경기장 트랙 (6개 레인) */
     .stadium {
       background: #0b0f19;
       border: 2px solid #374151;
@@ -382,7 +397,7 @@
     }
 
     .stadium-title {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #e2e8f0;
     }
@@ -400,20 +415,20 @@
     .track-container {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       position: relative;
       background: #111827;
-      padding: 12px 10px;
+      padding: 10px 8px;
       border-radius: 10px;
       border: 1px solid #1f2937;
     }
 
     .lane {
       position: relative;
-      height: 58px;
+      height: 52px;
       background: rgba(15, 23, 42, 0.8);
-      border-radius: 8px;
-      border-bottom: 2px dashed #334155;
+      border-radius: 6px;
+      border-bottom: 1px dashed #334155;
       display: flex;
       align-items: center;
       padding: 0 8px;
@@ -444,8 +459,8 @@
     .snail-sprite {
       position: absolute;
       left: 10px;
-      width: 58px;
-      height: 48px;
+      width: 54px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -457,10 +472,10 @@
       position: absolute;
       top: -6px;
       left: 4px;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 800;
-      padding: 1px 6px;
-      border-radius: 6px;
+      padding: 1px 5px;
+      border-radius: 5px;
       color: white;
       white-space: nowrap;
     }
@@ -497,20 +512,20 @@
       align-items: center;
     }
 
-    /* 4명의 달팽이 카드 */
+    /* 6마리 달팽이 그리드 */
     .snail-cards {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       .snail-cards {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 500px) {
       .snail-cards {
         grid-template-columns: 1fr;
       }
@@ -520,7 +535,7 @@
       background: #0b0f19;
       border: 2px solid #1f2937;
       border-radius: 10px;
-      padding: 12px;
+      padding: 10px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
@@ -547,7 +562,7 @@
 
     .snail-name {
       font-weight: 900;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
     }
 
     .snail-odds {
@@ -561,20 +576,20 @@
     }
 
     .snail-crowd-stats {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .crowd-bar-bg {
       width: 100%;
-      height: 6px;
+      height: 5px;
       background: #1e293b;
       border-radius: 3px;
       overflow: hidden;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .crowd-bar-fill {
@@ -777,97 +792,112 @@
   <!-- 최상단 박민아넷 롤링 전광판 -->
   <div class="top-marquee-strip">
     <div class="top-marquee-content">
-      ★ [속보] 박민아넷 교내 동접 4만 돌파! ★ 오늘의 매점 1등 간식 피크닉 증정 ★ 추천코드: MINA777 ★ 반 친구들끼리 훈훈한 100% 공정 달팽이 레이스 ★ 용철 vs 정윤 vs 빈첸시오 vs 탁동 세기의 대결 ★ 정보선생님도 인정한 최고의 교실 미니게임 ★
+      ★ [속보] 박민아넷 교내 동접 5만 돌파! ★ 🛡️ 먹튀 ZERO · 1초 초고속 즉시 정산 보증 ★ 공식 추천코드: MINA777 ★ 용철·정윤·빈첸시오·탁동·영도의왕·홍니콜먼 세기의 6인 매치 ★ 수학적 100% 무작위 공정 알고리즘 인증 ★ 정보선생님도 인정한 메이저 1위 놀이터 ★
     </div>
   </div>
 
   <div class="layout-wrapper">
-    <!-- 좌측 배너 -->
+    <!-- ==========================================
+         좌측 사이드바 배너 (정윤 다이어트 광고 포함)
+         ========================================== -->
     <aside class="banner-sidebar">
-      <div class="ad-banner banner-lol" onclick="bannerClick('교내 e스포츠')">
+      <!-- ★ 유머 정윤이 다이어트 광고 배너 ★ -->
+      <div class="ad-banner banner-diet" onclick="bannerClick('정윤 다이어트')">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="tag">CLASS ESPORTS</span>
-          <span style="font-size:0.65rem; font-weight:900; color:#db2777;">반대항전 LIVE</span>
+          <span class="diet-tag">🥗 정윤 클리닉</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#15803d;">안 빠지면 500% 환불</span>
         </div>
-        <div style="font-size:0.95rem; font-weight:900; color:#1e1b4b; line-height:1.2;">탁동이의 급식런<br>첫 숟갈을 잡아라</div>
-        <div style="font-size:0.68rem; font-weight:800; color:#e11d48;">⚡ 쿠폰코드: 탁동이최고</div>
+        <div style="font-size:0.92rem; font-weight:900; color:#14532d; line-height:1.2;">
+          헤비급 탈출 100일 작전!<br>정윤이 턱선을 찾아라
+        </div>
+        <div style="font-size:0.68rem; font-weight:800; color:#16a34a;">⚡ 특별할인 코드: BIG_JY</div>
+      </div>
+
+      <!-- 홍니콜먼 헬스장 배너 -->
+      <div class="ad-banner banner-gym" onclick="bannerClick('홍니콜먼 헬스')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="background:#be123c; color:#fff; font-size:0.62rem; font-weight:900; padding:1px 5px; border-radius:10px;">💪 YEAH BUDDY</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#fbbf24;">3대 500 보증</span>
+        </div>
+        <div style="font-size:0.92rem; font-weight:900; color:#fff; line-height:1.2;">
+          홍니콜먼 파워 짐<br>Light Weight Baby!
+        </div>
+        <div style="font-size:0.68rem; font-weight:800; color:#fda4af;">🔥 쿠폰: RONNIE500</div>
+      </div>
+
+      <!-- 영도의 왕 배너 -->
+      <div class="ad-banner banner-king" onclick="bannerClick('영도의 왕')">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="background:#0284c7; color:#fff; font-size:0.62rem; font-weight:900; padding:1px 5px; border-radius:10px;">👑 KING OF YEONGDO</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#38bdf8;">부산 영도 공인</span>
+        </div>
+        <div style="font-size:0.92rem; font-weight:900; color:#e0f2fe; line-height:1.2;">
+          영도다리 건너온 자<br>바다의 패왕 영도의 왕
+        </div>
+        <div style="font-size:0.68rem; font-weight:800; color:#38bdf8;">코드: KING_YEONGDO</div>
       </div>
 
       <div class="ad-banner banner-major" onclick="bannerClick('공식 매점쿠폰')">
         <div style="display:flex; justify-content:space-between;">
-          <span style="font-size:0.7rem; font-weight:900; color:#6b21a8;">[전교회장 보증]</span>
-          <span class="code-box">코드: 박민아</span>
+          <span style="font-size:0.7rem; font-weight:900; color:#6b21a8;">[전교회장 공식인증]</span>
+          <span style="background:#581c87; color:#fde047; font-size:0.68rem; font-weight:900; padding:1px 5px; border-radius:4px;">코드: 박민아</span>
         </div>
         <div>
-          <span class="big-red">매점 30%</span>
-          <span style="font-size:0.7rem; font-weight:800; color:#374151;"> 빵+우유 보너스</span>
+          <span class="big-red">신속정산 100%</span>
+          <span style="font-size:0.7rem; font-weight:800; color:#374151;"> 먹튀이력 0건</span>
         </div>
-        <div style="font-size:0.65rem; color:#4c1d95; font-weight:700;">★ 박민아넷 공식 인증 놀이터 ★</div>
+        <div style="font-size:0.65rem; color:#4c1d95; font-weight:700;">★ 박민아넷 공식 보증업체 ★</div>
       </div>
 
-      <div class="ad-banner banner-slot" onclick="bannerClick('상추 레이싱')">
-        <div class="slot-title">🥬 상추먹방 레이스 독점런칭</div>
-        <div style="font-size:0.68rem; color:#e2e8f0; line-height:1.25;">
-          달팽이 스피드런 챌린지<br>
-          용철이의 야자탈출 대작전
-        </div>
-        <div style="font-size:0.62rem; color:#facc15; font-weight:800;">코드: YONGCHUL</div>
-      </div>
-
-      <div class="ad-banner banner-goldcasino" onclick="bannerClick('골든 스낵바')">
+      <div class="ad-banner banner-gold" onclick="bannerClick('골든 스낵바')">
         <div style="display:flex; justify-content:space-between;">
           <span style="font-size:0.65rem; color:#f59e0b; font-weight:900;">👑 골든 매점왕</span>
           <span style="background:#fbbf24; color:#000; font-size:0.65rem; font-weight:900; padding:1px 5px; border-radius:3px;">코드: NEW</span>
         </div>
-        <div style="font-size:0.82rem; font-weight:900; color:#4ade80;">피크닉 3개 + 바나나우유 1개</div>
+        <div style="font-size:0.82rem; font-weight:900; color:#4ade80;">피크닉 3개 + 바나나우유 즉시지급</div>
         <div style="font-size:0.65rem; color:#a3a3a3;">점심시간 직후 당충전 전용</div>
-      </div>
-
-      <div class="ad-banner banner-neon" onclick="bannerClick('신의 축복')">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="color:#38bdf8; font-size:0.85rem; font-weight:900;">⚡ 빈첸시오 라운지</span>
-          <span style="background:#dc2626; color:#fff; font-size:0.62rem; padding:1px 5px; border-radius:3px; font-weight:900;">축복 100%</span>
-        </div>
-        <div style="font-size:0.95rem; font-weight:900; color:#f43f5e;">
-          연승확률 버프 발동중
-        </div>
-        <div style="font-size:0.65rem; color:#9ca3af;">기도하면 달팽이가 빨라집니다</div>
       </div>
     </aside>
 
-    <!-- 중앙 컨테이너 -->
+    <!-- ==========================================
+         중앙: 메인 경기장 & 배팅 구역
+         ========================================== -->
     <div class="container">
+      <!-- 모바일용 배너 그리드 -->
       <div class="banner-grid-horizontal">
-        <div class="ad-banner banner-lol" onclick="bannerClick('교내 e스포츠')">
+        <div class="ad-banner banner-diet" onclick="bannerClick('정윤 다이어트')">
           <div style="display:flex; justify-content:space-between;">
-            <span class="tag">CLASS ESPORTS</span>
-            <span style="font-size:0.65rem; font-weight:900; color:#db2777;">점심시간 LIVE</span>
+            <span class="diet-tag">🥗 정윤 클리닉</span>
+            <span style="font-size:0.65rem; font-weight:900; color:#15803d;">-30kg 보장</span>
           </div>
-          <div style="font-size:0.95rem; font-weight:900; color:#1e1b4b;">탁동이의 급식런 챌린지</div>
-          <div style="font-size:0.68rem; font-weight:800; color:#e11d48;">코드: 박민아 / 응원 포인트 지급</div>
+          <div style="font-size:0.92rem; font-weight:900; color:#14532d;">헤비급 탈출! 정윤이 턱선 찾기</div>
+          <div style="font-size:0.68rem; font-weight:800; color:#16a34a;">코드: BIG_JY</div>
         </div>
 
-        <div class="ad-banner banner-goldcasino" onclick="bannerClick('골든 스낵바')">
+        <div class="ad-banner banner-king" onclick="bannerClick('영도의 왕')">
           <div style="display:flex; justify-content:space-between;">
-            <span style="font-size:0.65rem; color:#f59e0b; font-weight:900;">👑 전교1등 정윤이의 벼락치기</span>
-            <span style="background:#fbbf24; color:#000; font-size:0.65rem; font-weight:900; padding:1px 5px; border-radius:3px;">코드: 100점</span>
+            <span style="background:#0284c7; color:#fff; font-size:0.65rem; font-weight:900; padding:1px 5px; border-radius:8px;">👑 영도의 왕</span>
+            <span style="font-size:0.65rem; font-weight:900; color:#38bdf8;">바다의 패왕</span>
           </div>
-          <div style="font-size:0.82rem; font-weight:900; color:#4ade80;">수학 100점 기원 부적 무료나눔</div>
-          <div style="font-size:0.65rem; color:#a3a3a3;">박민아넷 수험생 특별 이벤트</div>
+          <div style="font-size:0.92rem; font-weight:900; color:#e0f2fe;">영도다리 건너온 자의 질주</div>
+          <div style="font-size:0.68rem; font-weight:800; color:#38bdf8;">코드: KING</div>
         </div>
       </div>
 
-      <!-- 상단 헤더 -->
+      <!-- 상단 헤더 (인증/안전/노먹튀 강조) -->
       <header>
         <div class="title-group">
-          <h1>🐌 [공식] 박민아넷 3000</h1>
-          <p>우리반 최강자를 가린다! 용철·정윤·빈첸시오·탁동의 불꽃튀는 레이스</p>
+          <div class="title-row">
+            <h1>🐌 [공식] 박민아넷 3000</h1>
+            <span class="safe-badge">🛡️ 먹튀ZERO 인증업체</span>
+          </div>
+          <p>★ 100% 무사고 공식 인증 · 1초 신속 정산 보증 · 자본력 1위 메이저 안전 놀이터 ★</p>
         </div>
 
         <div class="header-stats">
           <div class="live-badge">
             <div class="live-pulse"></div>
-            LIVE <span id="online-users">48,321</span>명 응원 중
+            LIVE <span id="online-users">51,480</span>명 접속 중
           </div>
 
           <div class="money-badge">
@@ -875,7 +905,7 @@
             <span id="user-balance">50,000</span> P
           </div>
 
-          <button class="btn-charge" onclick="rechargeMoney()">✨ 교장선생님 장학금 받기</button>
+          <button class="btn-charge" onclick="rechargeMoney()">✨ 무사고 보증 장학금 받기</button>
           <button class="btn-charge" id="audio-toggle-btn" onclick="toggleAudio()" style="background:#374151; border-color:#4b5563;">🔊 소리 켜짐</button>
         </div>
       </header>
@@ -883,20 +913,20 @@
       <!-- 티커 바 -->
       <div class="live-ticker-bar">
         <div class="ticker-feed" id="ticker-feed">
-          📢 [실시간 열혈응원] 매점털이_탁동(8820)님이 1번 질주본능 용철이에 50,000P 몰빵!
+          📢 [실시간 영끌응원] 영도의왕(051)님이 5번 영도의 왕에 100,000P 패기 몰빵!
         </div>
         <div class="ticker-total">
-          총 응원 풀: <span id="total-pool-text">384,190,000 P</span>
+          총 보증금 풀: <span id="total-pool-text">428,950,000 P</span>
         </div>
       </div>
 
-      <!-- 트랙 경기장 (4개 레인) -->
+      <!-- 트랙 경기장 (6개 레인) -->
       <div class="stadium">
         <div class="stadium-header">
           <div class="stadium-title">
-            <span>🏁 100% 무작위 공정 달팽이 트랙 (거리 100m)</span>
+            <span>🏁 100% 무작위 공정 알고리즘 인증 트랙 (거리 100m)</span>
           </div>
-          <div class="race-status" id="race-status-badge">응원 준비 중</div>
+          <div class="race-status" id="race-status-badge">응원 접수 중</div>
         </div>
 
         <div class="track-container">
@@ -906,7 +936,7 @@
             <div class="finish-text">FINISH</div>
             <div class="snail-sprite" id="snail-1" style="left: 10px;">
               <span class="snail-badge" style="background: var(--lane-1);">1번 용철</span>
-              <svg viewBox="0 0 64 48" width="54" height="42">
+              <svg viewBox="0 0 64 48" width="50" height="40">
                 <ellipse cx="26" cy="24" rx="20" ry="18" fill="#ef4444"/>
                 <circle cx="26" cy="24" r="13" fill="#b91c1c"/>
                 <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
@@ -914,41 +944,35 @@
                 <circle cx="56" cy="16" r="3.5" fill="#f87171"/>
                 <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
                 <line x1="53" y1="23" x2="56" y2="16" stroke="#f87171" stroke-width="2.5"/>
-                <circle cx="50" cy="15" r="3.5" fill="#f87171"/>
-                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
-                <line x1="49" y1="23" x2="50" y2="15" stroke="#f87171" stroke-width="2.5"/>
               </svg>
             </div>
           </div>
 
-          <!-- 2번 레인: 전교1등 정윤이 -->
+          <!-- 2번 레인: 헤비급폭격기 정윤이 -->
           <div class="lane" id="lane-2">
             <div class="finish-line"></div>
             <div class="finish-text">FINISH</div>
             <div class="snail-sprite" id="snail-2" style="left: 10px;">
               <span class="snail-badge" style="background: var(--lane-2);">2번 정윤</span>
-              <svg viewBox="0 0 64 48" width="54" height="42">
-                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#f59e0b"/>
-                <circle cx="26" cy="24" r="13" fill="#b45309"/>
+              <svg viewBox="0 0 64 48" width="50" height="40">
+                <ellipse cx="26" cy="24" rx="22" ry="19" fill="#f59e0b"/>
+                <circle cx="26" cy="24" r="14" fill="#b45309"/>
                 <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
                 <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#fbbf24"/>
                 <circle cx="56" cy="16" r="3.5" fill="#fbbf24"/>
                 <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
                 <line x1="53" y1="23" x2="56" y2="16" stroke="#fbbf24" stroke-width="2.5"/>
-                <circle cx="50" cy="15" r="3.5" fill="#fbbf24"/>
-                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
-                <line x1="49" y1="23" x2="50" y2="15" stroke="#fbbf24" stroke-width="2.5"/>
               </svg>
             </div>
           </div>
 
-          <!-- 3번 레인: 절대가호 빈첸시오 -->
+          <!-- 3번 레인: 성스러운 빈첸시오 -->
           <div class="lane" id="lane-3">
             <div class="finish-line"></div>
             <div class="finish-text">FINISH</div>
             <div class="snail-sprite" id="snail-3" style="left: 10px;">
               <span class="snail-badge" style="background: var(--lane-3);">3번 빈첸시오</span>
-              <svg viewBox="0 0 64 48" width="54" height="42">
+              <svg viewBox="0 0 64 48" width="50" height="40">
                 <ellipse cx="26" cy="24" rx="20" ry="18" fill="#8b5cf6"/>
                 <circle cx="26" cy="24" r="13" fill="#6d28d9"/>
                 <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#ddd6fe" stroke-width="3" stroke-linecap="round"/>
@@ -956,20 +980,17 @@
                 <circle cx="56" cy="16" r="3.5" fill="#a78bfa"/>
                 <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
                 <line x1="53" y1="23" x2="56" y2="16" stroke="#a78bfa" stroke-width="2.5"/>
-                <circle cx="50" cy="15" r="3.5" fill="#a78bfa"/>
-                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
-                <line x1="49" y1="23" x2="50" y2="15" stroke="#a78bfa" stroke-width="2.5"/>
               </svg>
             </div>
           </div>
 
-          <!-- 4번 레인: 급식어택 탁동이 -->
+          <!-- 4번 레인: 급식돌격대 탁동이 -->
           <div class="lane" id="lane-4">
             <div class="finish-line"></div>
             <div class="finish-text">FINISH</div>
             <div class="snail-sprite" id="snail-4" style="left: 10px;">
               <span class="snail-badge" style="background: var(--lane-4);">4번 탁동</span>
-              <svg viewBox="0 0 64 48" width="54" height="42">
+              <svg viewBox="0 0 64 48" width="50" height="40">
                 <ellipse cx="26" cy="24" rx="20" ry="18" fill="#10b981"/>
                 <circle cx="26" cy="24" r="13" fill="#047857"/>
                 <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
@@ -977,9 +998,42 @@
                 <circle cx="56" cy="16" r="3.5" fill="#34d399"/>
                 <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
                 <line x1="53" y1="23" x2="56" y2="16" stroke="#34d399" stroke-width="2.5"/>
-                <circle cx="50" cy="15" r="3.5" fill="#34d399"/>
-                <circle cx="50.5" cy="14.5" r="1.5" fill="#000"/>
-                <line x1="49" y1="23" x2="50" y2="15" stroke="#34d399" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 5번 레인: 영도의 왕 -->
+          <div class="lane" id="lane-5">
+            <div class="finish-line"></div>
+            <div class="finish-text">FINISH</div>
+            <div class="snail-sprite" id="snail-5" style="left: 10px;">
+              <span class="snail-badge" style="background: var(--lane-5);">5번 영도의왕</span>
+              <svg viewBox="0 0 64 48" width="50" height="40">
+                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#06b6d4"/>
+                <circle cx="26" cy="24" r="13" fill="#0e7490"/>
+                <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#a5f3fc" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#67e8f9"/>
+                <circle cx="56" cy="16" r="3.5" fill="#67e8f9"/>
+                <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
+                <line x1="53" y1="23" x2="56" y2="16" stroke="#67e8f9" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 6번 레인: 3대500 홍니콜먼 -->
+          <div class="lane" id="lane-6">
+            <div class="finish-line"></div>
+            <div class="finish-text">FINISH</div>
+            <div class="snail-sprite" id="snail-6" style="left: 10px;">
+              <span class="snail-badge" style="background: var(--lane-6);">6번 홍니콜먼</span>
+              <svg viewBox="0 0 64 48" width="50" height="40">
+                <ellipse cx="26" cy="24" rx="20" ry="18" fill="#ec4899"/>
+                <circle cx="26" cy="24" r="13" fill="#be185d"/>
+                <path d="M 26 15 A 9 9 0 0 1 35 24 A 6 6 0 0 1 29 30" fill="none" stroke="#fbcfe8" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 12 36 Q 28 32 46 36 Q 52 36 56 32 Q 58 24 54 22 C 50 20 48 24 44 26" fill="#f472b6"/>
+                <circle cx="56" cy="16" r="3.5" fill="#f472b6"/>
+                <circle cx="56.5" cy="15.5" r="1.5" fill="#000"/>
+                <line x1="53" y1="23" x2="56" y2="16" stroke="#f472b6" stroke-width="2.5"/>
               </svg>
             </div>
           </div>
@@ -988,92 +1042,126 @@
         <!-- 중계 해설 자막 -->
         <div class="commentary-box">
           <span style="color:#ef4444; font-size:1.1rem;">🎙️</span>
-          <span id="commentary-text">박민아넷 중계석입니다! 친구들 중 과연 누가 1등으로 골인할까요?</span>
+          <span id="commentary-text">박민아넷 공식 중계석! 먹튀 없는 100% 공정 레이스가 곧 시작됩니다!</span>
         </div>
       </div>
 
       <!-- 배팅 & 응원 구역 -->
       <div class="betting-section">
         <div class="section-title">
-          <span>🎯 응원할 달팽이 선택 & 포인트 걸기</span>
-          <span style="font-size: 0.8rem; color: #10b981; font-weight: bold;">*조작 없음! 4마리 모두 수학적으로 25% 공정 확률</span>
+          <span>🎯 공식 인증 탑승 달팽이 선택 & 포인트 배팅</span>
+          <span style="font-size: 0.8rem; color: #10b981; font-weight: bold;">*조작 없음! 6마리 모두 수학적으로 16.6% 공정 확률</span>
         </div>
 
-        <!-- 4마리 카드 그리드 -->
+        <!-- 6마리 카드 그리드 (3x2) -->
         <div class="snail-cards">
-          <!-- 1번 달팽이: 용철이 -->
+          <!-- 1번: 용철이 -->
           <div class="snail-card selected" id="card-1" onclick="selectSnail(1)">
             <div class="snail-card-header">
               <div class="snail-name" style="color: #fca5a5;">
                 <span>🐌 1번 질주본능 용철이</span>
               </div>
-              <div class="snail-odds" id="odds-1">2.75x</div>
+              <div class="snail-odds" id="odds-1">4.50x</div>
             </div>
             <div class="snail-crowd-stats">
-              <div>서포터: <strong id="crowd-count-1">16,240</strong>명 (<span id="crowd-pct-1">32</span>%)</div>
-              <div>응원금: <strong id="crowd-pool-1">138,200,000</strong> P</div>
+              <div>보증 탑승: <strong id="crowd-count-1">14,200</strong>명 (<span id="crowd-pct-1">20</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-1">120,000,000</strong> P</div>
               <div class="crowd-bar-bg">
-                <div class="crowd-bar-fill" id="crowd-bar-1" style="width: 32%; background: var(--lane-1);"></div>
+                <div class="crowd-bar-fill" id="crowd-bar-1" style="width: 20%; background: var(--lane-1);"></div>
               </div>
             </div>
           </div>
 
-          <!-- 2번 달팽이: 정윤이 -->
+          <!-- 2번: 정윤이 -->
           <div class="snail-card" id="card-2" onclick="selectSnail(2)">
             <div class="snail-card-header">
               <div class="snail-name" style="color: #fde68a;">
-                <span>🐌 2번 전교1등 정윤이</span>
+                <span>🐌 2번 헤비급폭격 정윤이</span>
               </div>
-              <div class="snail-odds" id="odds-2">2.90x</div>
+              <div class="snail-odds" id="odds-2">4.80x</div>
             </div>
             <div class="snail-crowd-stats">
-              <div>서포터: <strong id="crowd-count-2">15,480</strong>명 (<span id="crowd-pct-2">28</span>%)</div>
-              <div>응원금: <strong id="crowd-pool-2">130,500,000</strong> P</div>
+              <div>보증 탑승: <strong id="crowd-count-2">13,100</strong>명 (<span id="crowd-pct-2">18</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-2">110,000,000</strong> P</div>
               <div class="crowd-bar-bg">
-                <div class="crowd-bar-fill" id="crowd-bar-2" style="width: 28%; background: var(--lane-2);"></div>
+                <div class="crowd-bar-fill" id="crowd-bar-2" style="width: 18%; background: var(--lane-2);"></div>
               </div>
             </div>
           </div>
 
-          <!-- 3번 달팽이: 빈첸시오 -->
+          <!-- 3번: 빈첸시오 -->
           <div class="snail-card" id="card-3" onclick="selectSnail(3)">
             <div class="snail-card-header">
               <div class="snail-name" style="color: #ddd6fe;">
-                <span>🐌 3번 절대가호 빈첸시오</span>
+                <span>🐌 3번 성스러운 빈첸시오</span>
               </div>
-              <div class="snail-odds" id="odds-3">3.10x</div>
+              <div class="snail-odds" id="odds-3">5.20x</div>
             </div>
             <div class="snail-crowd-stats">
-              <div>서포터: <strong id="crowd-count-3">13,620</strong>명 (<span id="crowd-pct-3">22</span>%)</div>
-              <div>응원금: <strong id="crowd-pool-3">115,490,000</strong> P</div>
+              <div>보증 탑승: <strong id="crowd-count-3">12,500</strong>명 (<span id="crowd-pct-3">17</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-3">105,000,000</strong> P</div>
               <div class="crowd-bar-bg">
-                <div class="crowd-bar-fill" id="crowd-bar-3" style="width: 22%; background: var(--lane-3);"></div>
+                <div class="crowd-bar-fill" id="crowd-bar-3" style="width: 17%; background: var(--lane-3);"></div>
               </div>
             </div>
           </div>
 
-          <!-- 4번 달팽이: 탁동이 -->
+          <!-- 4번: 탁동이 -->
           <div class="snail-card" id="card-4" onclick="selectSnail(4)">
             <div class="snail-card-header">
               <div class="snail-name" style="color: #a7f3d0;">
-                <span>🐌 4번 급식어택 탁동이</span>
+                <span>🐌 4번 급식돌격대 탁동이</span>
               </div>
-              <div class="snail-odds" id="odds-4">3.40x</div>
+              <div class="snail-odds" id="odds-4">5.50x</div>
             </div>
             <div class="snail-crowd-stats">
-              <div>서포터: <strong id="crowd-count-4">12,100</strong>명 (<span id="crowd-pct-4">18</span>%)</div>
-              <div>응원금: <strong id="crowd-pool-4">98,500,000</strong> P</div>
+              <div>보증 탑승: <strong id="crowd-count-4">11,800</strong>명 (<span id="crowd-pct-4">16</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-4">98,000,000</strong> P</div>
               <div class="crowd-bar-bg">
-                <div class="crowd-bar-fill" id="crowd-bar-4" style="width: 18%; background: var(--lane-4);"></div>
+                <div class="crowd-bar-fill" id="crowd-bar-4" style="width: 16%; background: var(--lane-4);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5번: 영도의 왕 -->
+          <div class="snail-card" id="card-5" onclick="selectSnail(5)">
+            <div class="snail-card-header">
+              <div class="snail-name" style="color: #67e8f9;">
+                <span>🐌 5번 영도의 왕</span>
+              </div>
+              <div class="snail-odds" id="odds-5">5.80x</div>
+            </div>
+            <div class="snail-crowd-stats">
+              <div>보증 탑승: <strong id="crowd-count-5">10,900</strong>명 (<span id="crowd-pct-5">15</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-5">89,000,000</strong> P</div>
+              <div class="crowd-bar-bg">
+                <div class="crowd-bar-fill" id="crowd-bar-5" style="width: 15%; background: var(--lane-5);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6번: 홍니콜먼 -->
+          <div class="snail-card" id="card-6" onclick="selectSnail(6)">
+            <div class="snail-card-header">
+              <div class="snail-name" style="color: #f472b6;">
+                <span>🐌 6번 3대500 홍니콜먼</span>
+              </div>
+              <div class="snail-odds" id="odds-6">6.00x</div>
+            </div>
+            <div class="snail-crowd-stats">
+              <div>보증 탑승: <strong id="crowd-count-6">9,800</strong>명 (<span id="crowd-pct-6">14</span>%)</div>
+              <div>응원 풀: <strong id="crowd-pool-6">82,000,000</strong> P</div>
+              <div class="crowd-bar-bg">
+                <div class="crowd-bar-fill" id="crowd-bar-6" style="width: 14%; background: var(--lane-6);"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 응원 포인트 조절 -->
+        <!-- 응원 머니 조절 -->
         <div class="bet-amount-control">
           <div class="bet-input-row">
-            <label for="bet-amount">응원 머니 (P):</label>
+            <label for="bet-amount">보증 배팅금 (P):</label>
             <input type="number" id="bet-amount" class="bet-input" value="5000" min="100" step="500">
           </div>
           <div class="quick-bet-btns">
@@ -1081,87 +1169,91 @@
             <button class="quick-btn" onclick="addBet(5000)">+5천</button>
             <button class="quick-btn" onclick="addBet(10000)">+1만</button>
             <button class="quick-btn" onclick="setHalfBet()">반띵(HALF)</button>
-            <button class="quick-btn all-in" onclick="setAllIn()">🔥 전재산 ALL-IN</button>
+            <button class="quick-btn all-in" onclick="setAllIn()">🔥 신용승부 ALL-IN</button>
           </div>
         </div>
 
         <!-- 출발 버튼 -->
         <button class="btn-start-race" id="start-btn" onclick="startRace()">
-          <span>🚀 응원 확정 & 레이스 출발!</span>
+          <span>🚀 배팅 확정 & 공식 레이스 출발!</span>
         </button>
       </div>
 
       <!-- 기록 장부 -->
       <div class="history-card">
         <div class="section-title">
-          <span>📜 실시간 경기 기록부</span>
-          <span style="font-size:0.75rem; color:#38bdf8;">박민아넷 공식 인증</span>
+          <span>📜 실시간 보증 정산 장부</span>
+          <span style="font-size:0.75rem; color:#38bdf8;">100% 무사고 즉시 정산 완료</span>
         </div>
         <table class="history-table">
           <thead>
             <tr>
               <th>회차</th>
-              <th>나의 달팽이</th>
-              <th>응원 포인트</th>
+              <th>탑승 달팽이</th>
+              <th>배팅 포인트</th>
               <th>우승 달팽이</th>
-              <th>결과</th>
-              <th>손익</th>
+              <th>정산 결과</th>
+              <th>손익금</th>
             </tr>
           </thead>
           <tbody id="history-body">
             <tr>
-              <td colspan="6" style="color: #64748b;">아직 진행된 레이스가 없습니다. 친구를 응원해보세요!</td>
+              <td colspan="6" style="color: #64748b;">아직 진행된 경기가 없습니다. 보증 레이스에 참여해보세요!</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 우측 배너 -->
+    <!-- ==========================================
+         우측 사이드바: 메이저 배너 도배
+         ========================================== -->
     <aside class="banner-sidebar">
-      <div class="ad-banner banner-baseball" onclick="bannerClick('하교 버스정류장')">
-        <div style="display:flex; justify-content:space-between;">
-          <span style="background:#f59e0b; color:#000; font-size:0.65rem; font-weight:900; padding:1px 5px; border-radius:3px;">정류장</span>
-          <span style="font-size:0.65rem; font-weight:900; color:#fbbf24;">코드: 칼퇴</span>
-        </div>
-        <div style="font-size:0.88rem; font-weight:900; color:#fff;">종 치자마자 집으로 칼퇴</div>
-        <div style="font-size:0.65rem; color:#a7f3d0;">용철이와 탁동이의 버스 스피드런</div>
-      </div>
-
-      <div class="ad-banner banner-goldcasino" onclick="bannerClick('시험 족보')">
-        <div style="display:flex; justify-content:space-between;">
-          <span style="font-size:0.85rem; font-weight:900; color:#38bdf8;">정윤 노트</span>
-          <span style="font-size:0.65rem; font-weight:900; color:#f87171;">코드: 1등</span>
-        </div>
-        <div style="font-size:0.82rem; font-weight:900; color:#fbbf24;">중간고사 기출문제 완벽 정리</div>
-        <div style="font-size:0.65rem; color:#d4d4d8;">★ 박민아넷 단독 배포 중 ★</div>
-      </div>
-
-      <div class="ad-banner banner-neon" onclick="bannerClick('컴퓨터실')">
+      <div class="ad-banner banner-neon" onclick="bannerClick('1초 신속출금')">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="color:#f43f5e; font-size:0.85rem; font-weight:900;">🚨 [극비 런칭]</span>
-          <span style="background:#eab308; color:#000; font-size:0.6rem; padding:1px 4px; font-weight:900; border-radius:3px;">HOT</span>
+          <span style="color:#38bdf8; font-size:0.85rem; font-weight:900;">⚡ 1초 칼정산</span>
+          <span style="background:#dc2626; color:#fff; font-size:0.62rem; padding:1px 5px; border-radius:3px; font-weight:900;">LTE 환전</span>
         </div>
-        <div style="font-size:0.88rem; font-weight:900; color:#fff;">정보쌤 몰래하는 타자배틀</div>
-        <div style="font-size:0.65rem; color:#67e8f9;">컴퓨터실 맨 뒷자리 전용 미니게임</div>
+        <div style="font-size:0.95rem; font-weight:900; color:#f43f5e;">
+          지연 시 100배 보상
+        </div>
+        <div style="font-size:0.65rem; color:#9ca3af;">무제한 상한가 보장 메이저</div>
       </div>
 
-      <div class="ad-banner banner-slot" onclick="bannerClick('급식 식단표')">
-        <div class="slot-title">🍱 오늘의 레전드 급식</div>
-        <div style="font-size:0.68rem; color:#f43f5e; font-weight:900;">
-          스팸마요덮밥 + 치즈돈까스<br>
-          탁동이가 추천하는 오늘의 메뉴
+      <div class="ad-banner banner-gold" onclick="bannerClick('영도 해물탕')">
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:0.75rem; font-weight:900; color:#38bdf8;">👑 영도의 왕 단골집</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#f87171;">코드: YEONGDO</span>
         </div>
-        <div style="font-size:0.62rem; color:#a7f3d0;">가입코드: LUNCH</div>
+        <div style="font-size:0.82rem; font-weight:900; color:#fbbf24;">영도 해녀촌 전복 즉시지급</div>
+        <div style="font-size:0.65rem; color:#d4d4d8;">★ 영도의 왕 강력 추천 ★</div>
+      </div>
+
+      <div class="ad-banner banner-diet" onclick="bannerClick('정윤 다이어트')">
+        <div style="display:flex; justify-content:space-between;">
+          <span class="diet-tag">🥗 정윤 보충제</span>
+          <span style="font-size:0.65rem; font-weight:900; color:#15803d;">탄수화물 CUT</span>
+        </div>
+        <div style="font-size:0.88rem; font-weight:900; color:#14532d;">헤비급 정윤이도 성공한<br>기적의 칼로리 컷팅제</div>
+        <div style="font-size:0.65rem; color:#16a34a;">쿠폰코드: SLIM_JY</div>
+      </div>
+
+      <div class="ad-banner banner-gym" onclick="bannerClick('홍니콜먼 헬스')">
+        <div class="slot-title" style="color:#fbbf24; font-size:0.85rem; font-weight:900;">⚡ 홍니콜먼 전용 닭가슴살</div>
+        <div style="font-size:0.68rem; color:#cbd5e1; line-height:1.2;">
+          단백질 40g 초고함량<br>
+          스쿼트 300kg 거뜬!
+        </div>
+        <div style="font-size:0.62rem; color:#fda4af; font-weight:900;">가입코드: PROTEIN</div>
       </div>
 
       <div class="ad-banner banner-major" onclick="bannerClick('박민아 팬클럽')">
         <div style="display:flex; justify-content:space-between;">
           <span style="font-size:0.75rem; font-weight:900; color:#db2777;">박민아넷 VIP</span>
-          <span class="code-box">코드: MINA</span>
+          <span style="background:#581c87; color:#fde047; font-size:0.68rem; font-weight:900; padding:1px 5px; border-radius:4px;">코드: MINA</span>
         </div>
-        <div class="big-red" style="font-size:1.05rem;">장학금 포인트 즉시지급</div>
-        <div style="font-size:0.65rem; color:#4b5563;">우리반 친구들 24시간 환영</div>
+        <div class="big-red" style="font-size:1.05rem;">무사고 안심보증금 예치</div>
+        <div style="font-size:0.65rem; color:#4b5563;">우리반 친구들 24시간 실시간 고객센터</div>
       </div>
     </aside>
   </div>
@@ -1170,41 +1262,45 @@
   <div class="modal-overlay" id="result-modal">
     <div class="modal-card">
       <div class="modal-icon" id="modal-icon">🎉</div>
-      <h2 class="modal-title" id="modal-title">예측 대성공!</h2>
+      <h2 class="modal-title" id="modal-title">보증 정산 대성공!</h2>
       <p class="modal-desc" id="modal-desc">
         1번 질주본능 용철이가 결승선을 1등으로 통과했습니다!
       </p>
-      <div class="modal-reward" id="modal-reward">+13,750 P</div>
-      <button class="modal-close-btn" onclick="closeModal()">다음 레이스 응원하러 가기</button>
+      <div class="modal-reward" id="modal-reward">+22,500 P</div>
+      <button class="modal-close-btn" onclick="closeModal()">다음 보증 경기 참여하기</button>
     </div>
   </div>
 
   <script>
     /* ========================================================
-       1. 전역 상태 및 달팽이 4마리 데이터
+       1. 전역 상태 및 달팽이 6마리 스펙 (공정 1/6 확률)
        ======================================================== */
     let userBalance = 50000;
     let selectedSnail = 1;
     let isRacing = false;
     let audioEnabled = true;
     let raceCount = 0;
-    let onlineUsers = 48321;
-    let basePool = 384190000;
+    let onlineUsers = 51480;
+    let basePool = 428950000;
 
-    // 반 친구들 4인 달팽이 스펙
+    // 6마리 달팽이 라인업
     const snailStats = [
-      { name: '1번 질주본능 용철이', color: '#ef4444', odds: 2.75, count: 16240, pool: 138200000 },
-      { name: '2번 전교1등 정윤이', color: '#f59e0b', odds: 2.90, count: 15480, pool: 130500000 },
-      { name: '3번 절대가호 빈첸시오', color: '#8b5cf6', odds: 3.10, count: 13620, pool: 115490000 },
-      { name: '4번 급식어택 탁동이', color: '#10b981', odds: 3.40, count: 12100, pool: 98500000 }
+      { name: '1번 질주본능 용철이', color: '#ef4444', odds: 4.50, count: 14200, pool: 120000000 },
+      { name: '2번 헤비급폭격 정윤이', color: '#f59e0b', odds: 4.80, count: 13100, pool: 110000000 },
+      { name: '3번 성스러운 빈첸시오', color: '#8b5cf6', odds: 5.20, count: 12500, pool: 105000000 },
+      { name: '4번 급식돌격대 탁동이', color: '#10b981', odds: 5.50, count: 11800, pool: 98000000 },
+      { name: '5번 영도의 왕', color: '#06b6d4', odds: 5.80, count: 10900, pool: 89000000 },
+      { name: '6번 3대500 홍니콜먼', color: '#ec4899', odds: 6.00, count: 9800, pool: 82000000 }
     ];
 
+    // 이스터에그 알림 메시지
     const bannerFunnyQuotes = [
-      "🚨 [경고] 정보 선생님: \"거기 뒤에 너 뭐하니? 수업에 집중하자!\"",
-      "📚 삐빅! 공부나 하세요! (본 사이트는 반 친구들의 건전한 달팽이 레이스 시뮬레이션입니다)",
-      "🥪 매점 매니아 탁동이가 피크닉을 획득했습니다!",
-      "⚡ 질주본능 용철이의 최고 시속: 0.003 km/h 돌파!",
-      "✨ 전교1등 정윤이의 오답노트 비법이 공개되었습니다!"
+      "🥗 [정윤 다이어트 클리닉] \"내일부터 뺀다\" 365일 연속 달성 중!",
+      "🏋️ 홍니콜먼: \"Light weight baby! 정윤아 닭가슴살 쉐이크 원샷해라!\"",
+      "👑 영도의 왕: \"영도다리 밑에서부터 뛰어오면 누구든 살 빠진다!\"",
+      "⚡ 질주본능 용철이: \"야자 종 치는 순간 내 속도는 마하 1이다!\"",
+      "🥪 탁동이: \"다이어트는 무슨, 오늘 급식 돈까스 곱빼기다!\"",
+      "🛡️ 박민아넷 보안팀: \"100% 무사고 먹튀 ZERO 청정 시스템 가동 중입니다.\""
     ];
 
     function bannerClick(name) {
@@ -1258,27 +1354,27 @@
     }
 
     /* ========================================================
-       2. 실시간 응원 티커 및 관전자 시뮬레이션
+       2. 실시간 응원 티커 (친구들 닉네임 반영)
        ======================================================== */
     const tickerMessages = [
-      "매점털이범_탁동(8820)님이 1번 질주본능 용철이에 50,000P 몰빵!",
-      "야자탈출넘버원(용철)님이 3번 절대가호 빈첸시오에 30,000P 투척!",
-      "수학만점자_정윤님이 2번 전교1등 정윤이에 20,000P 자신감 배팅!",
-      "세례명_빈첸시오님이 4번 급식어택 탁동이에 75,000P 긴급 수혈!",
-      "탁동이찐팬(9941)님이 4번 탁동이에 전재산 응원 완료!",
-      "전교회장_박민아님이 전 선수들에게 매점빵 버프를 시전했습니다!"
+      "영도의왕(051)님이 5번 영도의 왕에 100,000P 패기 몰빵!",
+      "헬창_홍니콜먼님이 6번 3대500 홍니콜먼에 단백질쉐이크 걸고 올인!",
+      "매점털이_탁동이가 4번 급식돌격 탁동이에 50,000P 몰빵!",
+      "다이어트포기_정윤님이 2번 헤비급폭격 정윤이에 70,000P 투척!",
+      "야자탈출러_용철이가 1번 질주본능 용철이에 전재산 응원!",
+      "세례명_빈첸시오님이 3번 성스러운 빈첸시오에 축복 투표 완료!"
     ];
 
     setInterval(() => {
       const deltaUsers = Math.floor(Math.random() * 70) - 30;
-      onlineUsers = Math.max(38000, onlineUsers + deltaUsers);
+      onlineUsers = Math.max(45000, onlineUsers + deltaUsers);
       document.getElementById('online-users').innerText = onlineUsers.toLocaleString();
 
       const deltaPool = Math.floor(Math.random() * 80000) + 20000;
       basePool += deltaPool;
       document.getElementById('total-pool-text').innerText = basePool.toLocaleString() + ' P';
 
-      const randIdx = Math.floor(Math.random() * 4);
+      const randIdx = Math.floor(Math.random() * 6);
       snailStats[randIdx].count += Math.floor(Math.random() * 12) + 1;
       snailStats[randIdx].pool += deltaPool;
       document.getElementById(`crowd-count-${randIdx+1}`).innerText = snailStats[randIdx].count.toLocaleString();
@@ -1289,7 +1385,7 @@
         const tickerEl = document.getElementById('ticker-feed');
         tickerEl.style.opacity = '0';
         setTimeout(() => {
-          tickerEl.innerText = `📢 [실시간 열혈응원] ${randMsg}`;
+          tickerEl.innerText = `📢 [실시간 영끌응원] ${randMsg}`;
           tickerEl.style.opacity = '1';
         }, 200);
       }
@@ -1301,13 +1397,10 @@
     function selectSnail(id) {
       if (isRacing) return;
       selectedSnail = id;
-      for (let i = 1; i <= 4; i++) {
+      for (let i = 1; i <= 6; i++) {
         const card = document.getElementById(`card-${i}`);
-        if (i === id) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
+        if (i === id) card.classList.add('selected');
+        else card.classList.remove('selected');
       }
       soundBeep();
     }
@@ -1336,7 +1429,7 @@
       if (isRacing) return;
       userBalance += 30000;
       updateBalanceDisplay();
-      alert("✨ [교장선생님 특별 장학금] 30,000 P 가 지원되었습니다! 친구들을 힘차게 응원해주세요!");
+      alert("✨ [100% 무사고 안심 장학금] 30,000 P 가 지원되었습니다! 공정 레이스를 즐겨보세요!");
       soundWin();
     }
 
@@ -1345,15 +1438,15 @@
     }
 
     /* ========================================================
-       4. 4마리 달팽이 레이스 & 공정 추첨 로직
+       4. 6마리 달팽이 레이스 & 공정 추첨 로직
        ======================================================== */
     const commentaryList = [
       "질주본능 용철이가 이판사판으로 치고 나갑니다!",
-      "전교1등 정윤이가 완벽하게 계산된 코스로 가속합니다!",
-      "절대가호 빈첸시오, 신의 축복을 받으며 외곽에서 맹추격!",
-      "급식어택 탁동이, 4교시 종 치자마자 튀어나가는 속도로 질주!",
-      "엎치락뒤치락! 친구들의 환호성이 교실을 뒤흔듭니다!",
-      "피니시 라인 직전! 사진 판독 들어갑니다!!"
+      "헤비급폭격기 정윤이, 묵직한 중량감으로 트랙을 흔들며 돌진!",
+      "성스러운 빈첸시오, 신의 축복을 받으며 안정적인 페이스 유지!",
+      "급식돌격대 탁동이, 4교시 종 치자마자 튀어나가는 폭발적 스피드!",
+      "영도의 왕, 거친 바닷바람을 가르며 선두 탈환 시도!",
+      "3대500 홍니콜먼, \"Light Weight Baby!\" 외치며 무시무시한 근력 폭발!"
     ];
 
     function startRace() {
@@ -1363,7 +1456,7 @@
       const betAmount = parseInt(betInput.value) || 0;
 
       if (betAmount <= 0) {
-        alert("응원 머니는 100 P 이상이어야 합니다.");
+        alert("배팅 머니는 100 P 이상이어야 합니다.");
         return;
       }
 
@@ -1377,7 +1470,7 @@
       isRacing = true;
 
       document.getElementById('start-btn').disabled = true;
-      document.getElementById('race-status-badge').innerText = '🔥 결사항전 질주 중!';
+      document.getElementById('race-status-badge').innerText = '🔥 6마리 결사항전 질주 중!';
       document.getElementById('race-status-badge').style.color = '#ef4444';
 
       soundStartWhistle();
@@ -1386,24 +1479,26 @@
         document.getElementById('snail-1'),
         document.getElementById('snail-2'),
         document.getElementById('snail-3'),
-        document.getElementById('snail-4')
+        document.getElementById('snail-4'),
+        document.getElementById('snail-5'),
+        document.getElementById('snail-6')
       ];
       snails.forEach(s => s.style.left = '10px');
 
-      // 4마리 완전 균등 확률 (각 25%)
-      const fairWinnerIndex = Math.floor(Math.random() * 4);
+      // 6마리 완전 균등 확률 (각 16.666%)
+      const fairWinnerIndex = Math.floor(Math.random() * 6);
       const winnerSnailId = fairWinnerIndex + 1;
 
       const trackWidth = document.querySelector('.lane').clientWidth;
       const targetFinishX = trackWidth - 95;
 
-      let currentPositions = [10, 10, 10, 10];
+      let currentPositions = [10, 10, 10, 10, 10, 10];
       let raceProgress = 0;
       const totalSteps = 160;
       let step = 0;
 
       const commentaryEl = document.getElementById('commentary-text');
-      commentaryEl.innerText = "🚥 스타트! 박민아넷 최강의 달팽이는 누구인가?!";
+      commentaryEl.innerText = "🚥 스타트! 박민아넷 최강의 1위 달팽이는 누구인가?!";
 
       const raceInterval = setInterval(() => {
         step++;
@@ -1414,7 +1509,7 @@
           commentaryEl.innerText = commentaryList[commentIdx];
         }
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 6; i++) {
           let randomJitter = (Math.random() * 2.8) - 1.0;
           let baseSpeed = (targetFinishX - 10) / totalSteps;
 
@@ -1482,17 +1577,17 @@
       const modalReward = document.getElementById('modal-reward');
 
       if (isWin) {
-        modalIcon.innerText = '🎉';
-        modalTitle.innerText = '대성공! 응원 적중!';
+        modalIcon.innerText = '🤑';
+        modalTitle.innerText = '인증 정산 성공! 적중 완료!';
         modalTitle.style.color = '#4ade80';
-        modalDesc.innerHTML = `내가 응원한 <strong>${chosenStats.name}</strong>가 1위로 골인했습니다!<br>배당률 ${chosenStats.odds}배의 상금이 지급됩니다.`;
+        modalDesc.innerHTML = `내가 응원한 <strong>${chosenStats.name}</strong>가 1위로 골인했습니다!<br>배당률 ${chosenStats.odds}배가 적용되어 1초 만에 즉시 정산되었습니다.`;
         modalReward.innerText = `+${payout.toLocaleString()} P 획득!`;
         modalReward.style.color = '#fbbf24';
       } else {
-        modalIcon.innerText = '😅';
-        modalTitle.innerText = '아쉽지만 다음 기회에!';
+        modalIcon.innerText = '😭';
+        modalTitle.innerText = '적중 실패! 다음 판 도전!';
         modalTitle.style.color = '#f87171';
-        modalDesc.innerHTML = `이번 레이스의 1위는 <strong>${winnerStats.name}</strong> 였습니다.<br>다음 판에 다시 도전해보세요!`;
+        modalDesc.innerHTML = `우승 달팽이는 <strong>${winnerStats.name}</strong> 였습니다.<br>100% 무사고 청정 시스템으로 다음 경기 즉시 참여 가능합니다!`;
         modalReward.innerText = `-${betAmount.toLocaleString()} P 차감`;
         modalReward.style.color = '#f87171';
       }
@@ -1516,7 +1611,7 @@
         <td>${chosen}</td>
         <td>${bet.toLocaleString()} P</td>
         <td><strong>${winner}</strong></td>
-        <td><span class="${isWin ? 'tag-win' : 'tag-lose'}">${isWin ? '성공' : '실패'}</span></td>
+        <td><span class="${isWin ? 'tag-win' : 'tag-lose'}">${isWin ? '적중(승)' : '미적(패)'}</span></td>
         <td class="${isWin ? 'tag-win' : 'tag-lose'}">${earningText} P</td>
       `;
       tbody.prepend(tr);
@@ -1532,9 +1627,9 @@
       canvas.height = window.innerHeight;
 
       const particles = [];
-      const colors = ['#ef4444', '#f59e0b', '#8b5cf6', '#10b981', '#3b82f6', '#ec4899', '#facc15'];
+      const colors = ['#ef4444', '#f59e0b', '#8b5cf6', '#10b981', '#06b6d4', '#ec4899', '#facc15'];
 
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 110; i++) {
         particles.push({
           x: canvas.width / 2,
           y: canvas.height / 2,
@@ -1579,3 +1674,4 @@
   </script>
 </body>
 </html>
+```
